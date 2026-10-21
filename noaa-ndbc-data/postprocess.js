@@ -33,7 +33,7 @@ const latest_columns = "wind_dir_degt,wind_speed_mps,gust_speed_mps,significant_
 const missing_data_list = "MM,999,9999.0,999.0,99.0,99.00".split(",")
 let obsArray = observationsTxt.split('\n')
 let jsonArray = obsArray.map(line => {
-    if (!line.startsWith("#") && line.length != 0) {
+    if (!line.startsWith("#") && line.length != 0 && !line.includes('\0')) {
         const readings = line.split(re)
         let ret = {
             station_id: readings.shift(),
